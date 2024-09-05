@@ -1,13 +1,14 @@
 <?php
 
+use App\Models\Room;
 use App\Models\User;
+use App\Models\Order;
 use App\Events\Example;
+use App\Models\Message;
 use App\Events\OrderDelivered;
 use App\Events\OrderDispatched;
-use App\Models\Message;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
-use App\Models\Order;
 
 Route::get('/', function () {
     return view('welcome');
@@ -26,6 +27,13 @@ Route::get('/orders/{order}', function(Order $order) {
     return view('order', [
         'order' => $order,
     ]); 
+})->middleware(['auth', 'verified'])->name('room');
+
+
+Route::get('/rooms/{room}', function (Room $room) {
+    return view('room',[
+        'room' => $room,
+    ]);
 });
 
 Route::get('/dashboard', function () {

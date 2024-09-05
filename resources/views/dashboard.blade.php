@@ -9,30 +9,32 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100"
-                    x-data = "{
+                    {{-- x-data = "{
                  dipatched: false,
                  delivered: false,
                  order: null,
-                 }"
-                    x-init="Echo.private('users.{{ auth()->id() }}')
-                        .listen('OrderDispatched', (e) => {
-                            order = e.order;
-                            dipatched = true;
+                 }" --}}
+                    x-init="
+                    const channel = Echo.private('app')
+
+                        {{-- channel.listenForWhisper('typing', (e) => {
+                            console.log(e)
                         })
-                        .listen('OrderDelivered', (e) => {
-                            order = e.order;
-                            delivered = true;
-                        })">
-                    <template x-if="dipatched">
-                        <div>
-                            order (#<span x-text="order.id"></span>) hase been dispatced
-                        </div>
-                    </template>
-                    <template x-if="delivered">
-                        <div>
-                            order (#<span x-text="order.id"></span>) hase been delivered
-                        </div>
-                    </template>
+
+                        setTimeout(() => {
+
+                            channel.whisper('typing',{
+                                id: 1
+                            })
+
+                        },2000) --}}
+                    "
+                    
+                    >
+        
+                    <div>
+
+                </div>
                 </div>
             </div>
         </div>

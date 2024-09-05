@@ -28,6 +28,13 @@ Broadcast::channel('orders.{orderId}', function (User $user, $orderId) {
 });
 
 
+Broadcast::channel('room.{roomId}', function (User $user, $roomId) {
+    return $user->only('id','name');
+});
+
+Broadcast::channel('app', function(User $user){
+    return true;
+});
 Broadcast::channel('chat', function(){
 
 });
