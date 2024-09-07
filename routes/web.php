@@ -1,11 +1,14 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
+// use OpenAI;
+use App\Livewire\Chat;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProfileController;
 
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/openAi', Chat::class);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
