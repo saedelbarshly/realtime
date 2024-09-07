@@ -11,8 +11,19 @@ class Chat extends Component
     public string $body = '';
     public array $messages = [];
 
+
+    public function mount(){
+        $this->messages = [
+            ['role' => 'system','content' => 'Welcome to our chat!'],
+        ];
+    }
+
     public function send(){
         $this->validate();
+        $this->messages[] = ['role' => 'user','content' => $this->body];
+        $this->messages[] = ['role' => 'assistant','content' => ''];
+
+        $this->body = '';
     }
     public function render()
     {
